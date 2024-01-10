@@ -1,49 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div>
-        <h1 class="header_text">Do you wanna go out with me?</h1>
-      </div>
-      <div class="gif_container">
-        <img
-          src="https://i.postimg.cc/pdNqPxx1/milk-and-mocha-cute.gif"
-          alt="Cute animated illustration"
-        />
-      </div>
-      <div class="buttons">
-        <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
-        <button
-          class="btn"
-          id="noButton"
-          onmouseover="moveButton()"
-          onclick="moveButton()"
-        >
-          No
-        </button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friend's Birthday Wish</title>
+    <style>
+        body {
+            background-color: #1f1f1f;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
 
-        <script>
-          function nextPage() {
-            window.location.href = "yes.html";
-          }
+        #wishText {
+            display: none;
+            font-size: 24px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            max-width: 80%;
+            line-height: 1.4;
+        }
 
-          function moveButton() {
-            var x =
-              Math.random() *
-              (window.innerWidth -
-                document.getElementById("noButton").offsetWidth);
-            var y =
-              Math.random() *
-              (window.innerHeight -
-                document.getElementById("noButton").offsetHeight);
-            document.getElementById("noButton").style.left = `${x}px`;
-            document.getElementById("noButton").style.top = `${y}px`;
-          }
-        </script>
-      </div>
-    </div>
-  </body>
+        @keyframes showText {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <h1 id="wishText">Happy Birthday, your friend! May your day be filled with love and laughter.</h1>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 100
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle"
+                },
+                "opacity": {
+                    "value": 0.5
+                },
+                "size": {
+                    "value": 3
+                },
+                "line_linked": {
+                    "enable": true
+                },
+                "move": {
+                    "speed": 1
+                }
+            }
+        });
+
+        function showWish() {
+            const wishText = document.getElementById('wishText');
+            wishText.style.display = 'block';
+            wishText.style.animation = 'showText 1s ease-in-out';
+        }
+
+        window.onload = showWish;
+    </script>
+</body>
 </html>
